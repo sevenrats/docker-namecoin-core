@@ -18,5 +18,5 @@ do
 done
 
 # Run application
-namecoind -conf=$NMCCORE_CONF & \
+namecoind -conf=/data/$NMCCORE_CONF & \
 wait -n

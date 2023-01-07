@@ -1,0 +1,9 @@
+version: "2"
+services:
+  namecoin:
+    image: sevenrats/namecoin-core
+    container_name: namecoin
+    ports:
+      - "8334:8334"
+    volumes:
+      - ./data/namecoin-core:/data/namecoin-core

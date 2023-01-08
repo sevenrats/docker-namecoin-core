@@ -15,12 +15,14 @@ RUN  \
 mkdir -p /data/namecoin-core $CORE_HOME && \
     ln -sf /data/namecoin-core $CORE_HOME/.namecoin && \
     adduser -D $CORE_USER && \
-    apk add --no-cache namecoin namecoin-cli ncdu bash catatonit procps jq musl-locales wget && \
+    apk add --no-cache namecoin namecoin-cli bash catatonit procps && \
+    apk add --no-cache --virtual .build-deps git && \
     chown -R ${CORE_USER} /data && \
-    cd / && \
-    wget https://raw.githubusercontent.com/sevenrats/signalproxy.sh/main/signalproxy.sh && \
-    apk del wget && \
+    git clone --depth 1 https://github.com/sevenrats/bash-signal-proxy.git && \
+    mv bash-signal-proxy/signalproxy.sh / && \
+    apk del .build-deps && \
     rm -rf \
+        bash-signal-proxy \
         /tmp/* \
         /root/.cache
 
